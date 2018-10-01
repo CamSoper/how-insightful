@@ -1,0 +1,34 @@
+﻿@page
+@model RazorPagesMovie.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Movies</h2>
+
+    <p>
+        <select asp-for="MovieGenre" asp-items="Model.Genres" class="dropdown">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" class="input-sm" id="SearchString">
+        <button class="btn, btn-primary" id="filterBtn">Filter</button>
+    </p>
+
+
+<div id="movieTable">
+    <partial name="_MovieList" model="Model.Movie"/>
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $('#filterBtn').on('click', function () {
+                $('#movieTable').load('?handler=MovieTable&movieGenre=' + $('#MovieGenre')[0].value + '&searchString=' + $('#SearchString')[0].value);
+            });
+        });
+    </script>
+}
