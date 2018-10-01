@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>How Insightful - Snapshot Debugger Telemetry Factory</Title>
+    <Author>Cam Soper</Author>
+    <Shortcut>hiSnapDebugTelemetryFactory</Shortcut>
+    <Description>Add this private class within the Startup class</Description>
+  </Header>
+  <Snippet>
+    <Code Language="CSharp">
+      <![CDATA[private class SnapshotCollectorTelemetryProcessorFactory : ITelemetryProcessorFactory
+{
+	private readonly IServiceProvider _serviceProvider;
+
+	public SnapshotCollectorTelemetryProcessorFactory(IServiceProvider serviceProvider) =>
+		_serviceProvider = serviceProvider;
+
+	public ITelemetryProcessor Create(ITelemetryProcessor next)
+	{
+		var snapshotConfigurationOptions = _serviceProvider.GetService<IOptions<SnapshotCollectorConfiguration>>();
+		return new SnapshotCollectorTelemetryProcessor(next, configuration: snapshotConfigurationOptions.Value);
+	}
+}]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

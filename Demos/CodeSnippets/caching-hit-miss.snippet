@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>How Insightful - Caching Hit/Miss Pattern</Title>
+    <Author>Cam Soper</Author>
+    <Shortcut>hiCacheMiss</Shortcut>
+    <Description>Replace the code in the Try block in OnGet in Index.cshtml.cs</Description>
+  </Header>
+  <Snippet>
+    <Code Language="CSharp">
+      <![CDATA[if (!_cache.TryGetValue("newsitems", out _newsItems))
+{
+    _telemetry.TrackEvent("News Service cache MISS");
+    _newsItems = await _newsService.GetNews(_newsServiceUrl);
+    var opts = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(5));
+    _cache.Set("newsitems", _newsItems);
+}
+else
+{
+  _telemetry.TrackEvent("News Service cache HIT");
+}]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

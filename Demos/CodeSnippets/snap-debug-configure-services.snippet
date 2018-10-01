@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>How Insightful - Snapshot Debugger Configure Services code</Title>
+    <Author>Cam Soper</Author>
+    <Shortcut>hiSnapDebugConfigureServices</Shortcut>
+    <Description>Insert this at the top of Startup.ConfigureServices()</Description>
+  </Header>
+  <Snippet>
+    <Code Language="CSharp">
+      <![CDATA[// Configure SnapshotCollector from application settings
+services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(nameof(SnapshotCollectorConfiguration)));
+
+// Add SnapshotCollector telemetry processor.
+services.AddSingleton<ITelemetryProcessorFactory>(sp => new SnapshotCollectorTelemetryProcessorFactory(sp));]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

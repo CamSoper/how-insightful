@@ -1,13 +1,23 @@
-# How to instrument your ASP.NET Core application for Application Insights
+# How Insightful! Grok Your ASP.NET Core Web Apps with Azure Monitor
 
-## Server-side instrumentation
+Thanks so much for attending my talk! I hope you found it informative and enjoyable. I've gathered information to help you get started with Application Insights and ASP.NET Core.
 
-1. Activate the extension or monitor
-2. Install NuGet Package  -  .UseApplicationInsights()?
+## Instrument your application
 
-## Client-side instrumentation - 
+I've written instructions in this repository for instrumenting your app to gather:
 
-Make the following changes to _Layout.cshtml.
+* Server-side telemetry
+* Client-side telemetry
+* Debug snapshots
+
+### Server-side telemetry
+
+* Activate the extension (Azure) or Application Insights Status Monitor from [Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx) (IIS)
+* Install NuGet Package - [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore)
+
+### Client-side telemetry 
+
+Make the following changes to `_Layout.cshtml`.
 
 Razor directives (top of page):
 
@@ -30,9 +40,11 @@ Script block (insert as the last element before `</head>`)
 </script>
 ```
 
-## Snapshot Debugging
+### Snapshot Debugging
 
-Add these using directives to Startup.cs:
+Install NuGet Package - [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector/)
+
+Add these using directives to `Startup.cs`:
 
 ```
 using Microsoft.ApplicationInsights.AspNetCore;
@@ -41,7 +53,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.ApplicationInsights.SnapshotCollector;
 ```
 
-Add this block to Startup.ConfigureServices:
+Add this block to `Startup.ConfigureServices`:
 
 ```
 // Configure SnapshotCollector from application settings
@@ -51,7 +63,7 @@ services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(name
 services.AddSingleton<ITelemetryProcessorFactory>(sp => new SnapshotCollectorTelemetryProcessorFactory(sp));
 ```
 
-Add this class to Startup class:
+Add this private class within the `Startup` class:
 
 ```
 private class SnapshotCollectorTelemetryProcessorFactory : ITelemetryProcessorFactory
@@ -69,7 +81,7 @@ private class SnapshotCollectorTelemetryProcessorFactory : ITelemetryProcessorFa
 }
 ```
 
-Add this configuration to appsettings.json:
+Add this configuration to `appsettings.json`:
 
 ```
   "SnapshotCollectorConfiguration": {
@@ -86,3 +98,9 @@ Add this configuration to appsettings.json:
     "FailedRequestLimit": 3
   }
 ```
+
+## Demos
+
+`.\Demos\MoviePortal_Instrumented\RazorPagesMovie.sln` is the fully instrumented demo. I don't intend on leaving MovieNewsService running, so you'll need to deploy the MovieNewsService API somewhere (Azure?) and change the `NewsService` class (in the Services folder in the RazorPagesMovie project) to point to your deployed service.
+
+Be sure to add your own instrumentation key to `appsettings.json`.

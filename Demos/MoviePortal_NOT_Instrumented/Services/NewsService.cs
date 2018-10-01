@@ -8,15 +8,13 @@ namespace RazorPagesMovie.Services
 {
     public class NewsService
     {
-        private const string _newsUrl = "https://camsmovienewsservice.azurewebsites.net/api/movienews";
-
-        public async Task<List<NewsStoryViewModel>> GetNews()
+        public async Task<List<NewsStoryViewModel>> GetNews(string newsUrl)
         {
             var client = new HttpClient();
-            var response = await client.GetAsync(_newsUrl);
+            var response = await client.GetAsync(newsUrl);
             var news = await response.Content.ReadAsAsync<List<NewsStoryViewModel>>();
             return news.OrderByDescending(story => story.Published).ToList();
         }
     }
 
- }
+}

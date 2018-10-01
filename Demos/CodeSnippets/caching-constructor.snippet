@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>How Insightful - Caching Constructor</Title>
+    <Author>Cam Soper</Author>
+    <Shortcut>hiCacheConstructor</Shortcut>
+    <Description>Replace the constructor in Index.cshtml.cs</Description>
+  </Header>
+  <Snippet>
+    <Code Language="CSharp">
+      <![CDATA[public IndexModel(NewsService newsService, IMemoryCache memoryCache)
+{
+    _newsService = newsService;
+    _cache = memoryCache;
+}]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
