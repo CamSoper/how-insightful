@@ -12,7 +12,7 @@
 {
     _telemetry.TrackEvent("News Service cache MISS");
     _newsItems = await _newsService.GetNews(_newsServiceUrl);
-    var opts = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(5));
+    var opts = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(60));
     _cache.Set("newsitems", _newsItems);
 }
 else
