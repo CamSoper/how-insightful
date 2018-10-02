@@ -8,9 +8,10 @@
   </Header>
   <Snippet>
     <Code Language="CSharp">
-      <![CDATA[public IndexModel(NewsService newsService, IMemoryCache memoryCache)
+      <![CDATA[public IndexModel(NewsService newsService, IConfiguration config, IMemoryCache memoryCache)
 {
     _newsService = newsService;
+    _newsServiceUrl = config.GetValue<string>("NewsServiceUrl");
     _cache = memoryCache;
 }]]>
     </Code>
