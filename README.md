@@ -105,6 +105,7 @@ Add this configuration to `appsettings.json`:
 
 ## Additional reading
 
+* [What is Application Insights?](https://docs.microsoft.com/azure/application-insights/app-insights-overview?toc=/azure/azure-monitor/toc.json)
 * [Application Insights Quickstart for ASP.NET Core](https://docs.microsoft.com/azure/application-insights/app-insights-dotnetcore-quick-start?toc=/azure/azure-monitor/toc.json)
 * [Azure Monitor documentation](https://docs.microsoft.com/azure/azure-monitor/)
 * [More information on the difference between run time and build time telemetry ingestion](https://docs.microsoft.com/azure/application-insights/app-insights-monitor-performance-live-website-now)
