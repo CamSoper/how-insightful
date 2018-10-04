@@ -6,8 +6,8 @@ Thanks so much for attending my talk! I hope you found it informative and enjoya
 
 I've written instructions in this repository for instrumenting your app to gather:
 
-* Server-side telemetry
-* Client-side telemetry
+* Server-side telemetry (run time and build time)
+* Client-side telemetry (browser)
 * Debug snapshots
 
 ### Server-side telemetry
@@ -99,8 +99,15 @@ Add this configuration to `appsettings.json`:
   }
 ```
 
-## Demos
+## Running the demos
 
-`.\Demos\MoviePortal_Instrumented\RazorPagesMovie.sln` is the fully instrumented demo. I don't intend on leaving MovieNewsService running, so you'll need to deploy the MovieNewsService API somewhere (Azure?) and change the `NewsService` class (in the Services folder in the RazorPagesMovie project) to point to your deployed service.
+`.\Demos\MoviePortal_Instrumented\RazorPagesMovie.sln` is the fully instrumented demo, but you can recreate the full demo using `.\Demos\MoviePortal_NOT_Instrumented\RazorPagesMovie.sln`. Deploy MovieNewsService somewhere and add the URL to the appropriate spot in `appsettings.json`.  Be sure to add your own instrumentation key!
 
-Be sure to add your own instrumentation key to `appsettings.json`.
+## Additional reading
+
+* [What is Application Insights?](https://docs.microsoft.com/azure/application-insights/app-insights-overview?toc=/azure/azure-monitor/toc.json)
+* [Supported platforms and frameworks](https://docs.microsoft.com/azure/application-insights/app-insights-platforms)
+* [Application Insights Quickstart for ASP.NET Core](https://docs.microsoft.com/azure/application-insights/app-insights-dotnetcore-quick-start?toc=/azure/azure-monitor/toc.json)
+* [Azure Monitor documentation](https://docs.microsoft.com/azure/azure-monitor/)
+* [More information on the difference between run time and build time telemetry ingestion](https://docs.microsoft.com/azure/application-insights/app-insights-monitor-performance-live-website-now)
+* [About Adaptive Sampling](https://docs.microsoft.com/azure/application-insights/app-insights-sampling#adaptive-sampling-at-your-web-server)
