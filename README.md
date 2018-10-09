@@ -1,4 +1,4 @@
-# How Insightful! Grok Your ASP.NET Core Web Apps with Azure Monitor
+# How Insightful! Grok Your ASP.NET Core Web Apps with Application Insights
 
 Thanks so much for attending my talk! I hope you found it informative and enjoyable. I've gathered information to help you get started with Application Insights and ASP.NET Core.
 
