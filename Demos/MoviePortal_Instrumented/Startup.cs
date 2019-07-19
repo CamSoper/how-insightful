@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 using RazorPagesMovie.Services;
-
 using Microsoft.ApplicationInsights.AspNetCore;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Extensions.Options;
@@ -27,12 +26,7 @@ namespace RazorPagesMovie
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Configure SnapshotCollector from application settings
-            services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(nameof(SnapshotCollectorConfiguration)));
-
-            // Add SnapshotCollector telemetry processor.
-            services.AddSingleton<ITelemetryProcessorFactory>(sp => new SnapshotCollectorTelemetryProcessorFactory(sp));
-
+            
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -42,6 +36,12 @@ namespace RazorPagesMovie
             services.AddScoped<NewsService>();
             services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // Configure SnapshotCollector from application settings
+            services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(nameof(SnapshotCollectorConfiguration)));
+
+            // Add SnapshotCollector telemetry processor.
+            services.AddSingleton<ITelemetryProcessorFactory>(sp => new SnapshotCollectorTelemetryProcessorFactory(sp));
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
