@@ -3,17 +3,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Models;
+using MoviePortal.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace MoviePortal.Pages.Movies
 {
     public class DetailsModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.RazorPagesMovieContext _context;
+        private readonly MoviePortal.Models.MoviePortalContext _context;
         private Dictionary<string, string> _emojis;
         public string Emoji { get; set; }
 
-        public DetailsModel(RazorPagesMovie.Models.RazorPagesMovieContext context)
+        public DetailsModel(MoviePortal.Models.MoviePortalContext context)
         {
             _context = context;
             InitEmojiList();

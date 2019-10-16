@@ -1,10 +1,10 @@
-﻿using RazorPagesMovie.ViewModels;
+﻿using MoviePortal.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace RazorPagesMovie.Services
+namespace MoviePortal.Services
 {
     public class NewsService
     {

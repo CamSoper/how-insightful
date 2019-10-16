@@ -7,14 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace RazorPagesMovie.Models
+namespace MoviePortal.Models
 {
     public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new RazorPagesMovieContext(
-                serviceProvider.GetRequiredService<DbContextOptions<RazorPagesMovieContext>>()))
+            using (var context = new MoviePortalContext(
+                serviceProvider.GetRequiredService<DbContextOptions<MoviePortalContext>>()))
             {
                 // Look for any movies.
                 if (context.Movie.Any())

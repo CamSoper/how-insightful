@@ -7,16 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Models;
+using MoviePortal.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace MoviePortal.Pages.Movies
 {
     #region snippet_newProps
     public class IndexModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.RazorPagesMovieContext _context;
+        private readonly MoviePortal.Models.MoviePortalContext _context;
 
-        public IndexModel(RazorPagesMovie.Models.RazorPagesMovieContext context)
+        public IndexModel(MoviePortal.Models.MoviePortalContext context)
         {
             _context = context;
         }

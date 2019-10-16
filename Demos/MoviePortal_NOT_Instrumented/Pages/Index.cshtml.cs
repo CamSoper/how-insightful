@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
-using RazorPagesMovie.Services;
-using RazorPagesMovie.ViewModels;
+using MoviePortal.Services;
+using MoviePortal.ViewModels;
 
-namespace RazorPagesMovie.Pages
+namespace MoviePortal.Pages
 {
     public class IndexModel : PageModel
     {

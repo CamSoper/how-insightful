@@ -1,18 +1,21 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using RazorPagesMovie.Models;
 using System;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MoviePortal.Models;
 
-namespace RazorPagesMovie
+namespace MoviePortal
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
             {
@@ -20,8 +23,8 @@ namespace RazorPagesMovie
 
                 try
                 {
-                    var context = services.GetRequiredService<RazorPagesMovieContext>();
-                    context.Database.Migrate();
+                    var context = services.GetRequiredService<MoviePortalContext>();
+                    //context.Database.Migrate();
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)
@@ -33,9 +36,13 @@ namespace RazorPagesMovie
 
             host.Run();
         }
+        
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

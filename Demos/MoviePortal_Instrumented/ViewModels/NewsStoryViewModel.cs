@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RazorPagesMovie.ViewModels
+namespace MoviePortal.ViewModels
 {
     public class NewsStoryViewModel
     {
