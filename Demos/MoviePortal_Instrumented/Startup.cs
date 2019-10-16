@@ -31,6 +31,7 @@ namespace MoviePortal
             services.AddMemoryCache();
             services.AddDbContext<MoviePortalContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MoviePortalContext")));
+            services.AddApplicationInsightsTelemetry();
         
         }
 
